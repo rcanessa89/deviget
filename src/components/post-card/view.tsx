@@ -59,7 +59,11 @@ const PostCard: FunctionComponent<PostCardProps> = ({
             <Typography variant="caption" display="block">
               {num_comments} Comments
             </Typography>
-            <Typography className={classes.createdAt} variant="caption" display="block">
+            <Typography
+              className={classes.createdAt}
+              variant="caption"
+              display="block"
+            >
               {postCardCreated(created_utc)}
             </Typography>
           </>

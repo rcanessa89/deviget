@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-export const postCardUseStyles = makeStyles(theme => ({
+export const postCardUseStyles = makeStyles((theme) => ({
   root: {
     height: 150,
     paddingTop: theme.spacing(3),
