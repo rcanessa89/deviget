@@ -8,11 +8,14 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button';
+import Pagination from '@material-ui/lab/Pagination';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { useTheme } from '@material-ui/core/styles';
-
 import { LayoutProps } from './types';
 import { layoutUseStyles } from './styles';
+import { PAGE_SIZE } from './constants';
+import './card-transition.css';
 
 const Layout: FunctionComponent<LayoutProps> = ({
   children,
@@ -22,10 +25,25 @@ const Layout: FunctionComponent<LayoutProps> = ({
 }) => {
   const classes = layoutUseStyles();
   const theme = useTheme();
+  const [page, setPage] = useState(1);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pageStart = (page * PAGE_SIZE) - PAGE_SIZE;
+  const pageEnd = pageStart + PAGE_SIZE;
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  const drawerEl = (
+    <TransitionGroup>
+      {
+        drawer.slice(pageStart, pageEnd).map(d => (
+          <CSSTransition key={d.props.id} timeout={500} classNames="item">
+            {d}
+          </CSSTransition>
+        ))
+      }
+    </TransitionGroup>
+  );
 
   return (
     <div className={classes.root}>
@@ -59,10 +77,43 @@ const Layout: FunctionComponent<LayoutProps> = ({
               keepMounted: true
             }}
           >
-            <List>{drawer}</List>
+            {drawer.length > PAGE_SIZE && (
+              <Pagination
+                count={Math.ceil(drawer.length / PAGE_SIZE)}
+                siblingCount={1}
+                page={page}
+                onChange={(e, v) => setPage(v)}
+                classes={{
+                  root: classes.paginationcontainer
+                }}
+              />
+            )}
+            <List>{drawerEl}</List>
+            <div className={classes.dismissAllbuttonContainer}>
+              <Button
+                className={classes.dismissAllbutton}
+                color="secondary"
+                size="large"
+                variant="contained"
+                onClick={onDismissAll}
+              >
+                Dismiss All
+              </Button>
+            </div>
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
+          {drawer.length > PAGE_SIZE && (
+            <Pagination
+              count={Math.ceil(drawer.length / PAGE_SIZE)}
+              siblingCount={1}
+              page={page}
+              onChange={(e, v) => setPage(v)}
+              classes={{
+                root: classes.paginationcontainer
+              }}
+            />
+          )}
           <Drawer
             classes={{
               paper: classes.drawerPaper
@@ -70,20 +121,20 @@ const Layout: FunctionComponent<LayoutProps> = ({
             variant="permanent"
             open
           >
-            <List>{drawer}</List>
+            <List>{drawerEl}</List>
           </Drawer>
+          <div className={classes.dismissAllbuttonContainer}>
+            <Button
+              className={classes.dismissAllbutton}
+              color="secondary"
+              size="large"
+              variant="contained"
+              onClick={onDismissAll}
+            >
+              Dismiss All
+            </Button>
+          </div>
         </Hidden>
-        <div className={classes.dismissAllbuttonContainer}>
-          <Button
-            className={classes.dismissAllbutton}
-            color="secondary"
-            size="large"
-            variant="contained"
-            onClick={onDismissAll}
-          >
-            Dismiss All
-          </Button>
-        </div>
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />

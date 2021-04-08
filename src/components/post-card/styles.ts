@@ -5,7 +5,7 @@ export const postCardUseStyles = makeStyles((theme) => ({
     position: 'relative'
   },
   root: {
-    height: 140,
+    height: 130,
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3)
   },
@@ -20,5 +20,11 @@ export const postCardUseStyles = makeStyles((theme) => ({
   },
   createdAt: {
     textTransform: 'capitalize'
+  },
+  title: {
+    display: '-webkit-box',
+    '-webkit-line-clamp': 2,
+    '-webkit-box-orient': 'vertical',
+    overflow: 'hidden'
   }
 }));

@@ -87,6 +87,9 @@ const PostCard: FunctionComponent<PostCardProps> = memo(
                   variant="body2"
                   color="textPrimary"
                   component="span"
+                  classes={{
+                    root: classes.title
+                  }}
                 >
                   {title}
                 </Typography>

@@ -1,7 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const DRAWER_WIDTH = 300;
+const DRAWER_WIDTH = 270;
 const DISMISS_ALL_BUTTON_HEIGHT = 42;
+const PAGINATION_HEIGHT = 58;
 
 export const layoutUseStyles = makeStyles((theme) => ({
   root: {
@@ -29,11 +30,15 @@ export const layoutUseStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: DRAWER_WIDTH,
-    paddingBottom: DISMISS_ALL_BUTTON_HEIGHT
+    paddingBottom: DISMISS_ALL_BUTTON_HEIGHT,
+    paddingTop: PAGINATION_HEIGHT
   },
   content: {
-    width: `calc(100% - ${DRAWER_WIDTH}px)`,
-    padding: theme.spacing(3)
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${DRAWER_WIDTH}px)`,
+      padding: theme.spacing(3),
+    }
   },
   dismissAllbuttonContainer: {
     position: 'fixed',
@@ -47,5 +52,14 @@ export const layoutUseStyles = makeStyles((theme) => ({
   dismissAllbutton: {
     width: '100%',
     borderRadius: 0
+  },
+  paginationcontainer: {
+    position: 'fixed',
+    width: DRAWER_WIDTH - 1,
+    height: PAGINATION_HEIGHT,
+    zIndex: 1201,
+    backgroundColor: theme.palette.background.paper,
+    display: 'flex',
+    top: 0
   }
 }));
