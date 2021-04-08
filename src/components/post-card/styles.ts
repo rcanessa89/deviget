@@ -5,7 +5,7 @@ export const postCardUseStyles = makeStyles((theme) => ({
     position: 'relative'
   },
   root: {
-    height: 150,
+    height: 140,
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3)
   },

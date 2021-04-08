@@ -46,8 +46,12 @@ export const postSlice = createSlice({
   name: POST_SLICE_NAME,
   initialState,
   reducers: {
-    removePost: (state, action: PayloadAction<string>) => {
+    dismissPost: (state, action: PayloadAction<string>) => {
       delete state.data.children[action.payload];
+    },
+    dismissAll: (state) => {
+      state.status = 'idle';
+      state.data.children = {};
     }
   },
   extraReducers: (builder) => {

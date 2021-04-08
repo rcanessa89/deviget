@@ -7,6 +7,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
+import Button from '@material-ui/core/Button';
+
 import { useTheme } from '@material-ui/core/styles';
 
 import { LayoutProps } from './types';
@@ -15,7 +17,8 @@ import { layoutUseStyles } from './styles';
 const Layout: FunctionComponent<LayoutProps> = ({
   children,
   drawer = [],
-  title
+  title,
+  onDismissAll
 }) => {
   const classes = layoutUseStyles();
   const theme = useTheme();
@@ -56,7 +59,9 @@ const Layout: FunctionComponent<LayoutProps> = ({
               keepMounted: true
             }}
           >
-            {drawer}
+            <List>
+              {drawer}
+            </List>
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -67,9 +72,22 @@ const Layout: FunctionComponent<LayoutProps> = ({
             variant="permanent"
             open
           >
-            <List>{drawer}</List>
+            <List>
+              {drawer}
+            </List>
           </Drawer>
         </Hidden>
+        <div className={classes.dismissAllbuttonContainer}>
+          <Button
+            className={classes.dismissAllbutton}
+            color="secondary"
+            size="large"
+            variant="contained"
+            onClick={onDismissAll}
+          >
+            Dismiss All
+          </Button>
+        </div>
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />

@@ -5,4 +5,5 @@ export interface PostCardProps {
   author: string;
   num_comments: number;
   created_utc: number;
+  onDissmissPost: () => void;
 }

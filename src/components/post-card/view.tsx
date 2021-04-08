@@ -14,8 +14,6 @@ import { postCardCreated } from './utils';
 import { PostCardProps } from './types';
 import { postCardUseStyles } from './styles';
 import { LS_UNREAD_DATA } from './constants';
-import { useAppDispatch } from 'store';
-import { postSlice } from 'store/slices/post';
 
 const useLSUnreaded = createLocalStorageStateHook<{ [key: string]: string }>(
   LS_UNREAD_DATA,
@@ -23,8 +21,7 @@ const useLSUnreaded = createLocalStorageStateHook<{ [key: string]: string }>(
 );
 
 const PostCard: FunctionComponent<PostCardProps> = memo(
-  ({ id, title, thumbnail, author, num_comments, created_utc }) => {
-    const dispatch = useAppDispatch();
+  ({ id, title, thumbnail, author, num_comments, created_utc, onDissmissPost }) => {
     const [unreaded, setUnreaded] = useLSUnreaded();
     const history = useHistory();
     const classes = postCardUseStyles();
@@ -38,9 +35,6 @@ const PostCard: FunctionComponent<PostCardProps> = memo(
 
       history.push(`/${id}`);
     };
-    const onDelete = () => {
-      dispatch(postSlice.actions.removePost(id));
-    };
 
     return (
       <div className={classes.container}>
@@ -50,7 +44,7 @@ const PostCard: FunctionComponent<PostCardProps> = memo(
           classes={{
             root: classes.iconButtonRoot
           }}
-          onClick={onDelete}
+          onClick={onDissmissPost}
         >
           <CloseIcon fontSize="small" />
         </IconButton>
