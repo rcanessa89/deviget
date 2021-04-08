@@ -1,23 +1,24 @@
 import { FunctionComponent, useEffect } from 'react';
 import { RouteProps } from 'react-router-dom';
 
-import { useAppDispatch } from 'store';
+import { useAppDispatch, useAppSelector } from 'store';
 import { fetchPosts } from 'store/slices/post';
-
 import { Layout } from 'components/layout';
+import { PostCard } from 'components/post-card';
 
 const HomeView: FunctionComponent<RouteProps> = () => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector((state) =>
+    Object.values(state.post.data.children)
+  );
 
-    useEffect(() => {
-        dispatch(fetchPosts())
-    }, [dispatch]);
+  const drawer = posts.map((p) => <PostCard key={p.id} {...p} />);
 
-    return (
-        <Layout
-            title="Reddit top 50"
-        />
-    )
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
+
+  return <Layout title="Reddit top 50" drawer={drawer} />;
 };
 
 export default HomeView;

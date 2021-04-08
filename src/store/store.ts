@@ -9,7 +9,7 @@ export const store = configureStore({
 });
 
 export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
@@ -22,8 +22,8 @@ export interface AppAsyncThunkOptions<Extra = void> {
   extra: Extra;
 }
 export type AppAsyncStatus = 'idle' | 'pending' | 'fulfilled' | 'rejected';
-export interface AppAsyncState<D = unknown, E = unknown> {
+export interface AppAsyncState<D = {}, E = unknown> {
   status: AppAsyncStatus;
-  data?: D;
+  data: D;
   error?: E;
 }

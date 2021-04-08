@@ -6,15 +6,16 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
 import { useTheme } from '@material-ui/core/styles';
 
 import { LayoutProps } from './types';
 import { layoutUseStyles } from './styles';
 
 const Layout: FunctionComponent<LayoutProps> = ({
-    children,
-    drawer = [],
-    title
+  children,
+  drawer = [],
+  title
 }) => {
   const classes = layoutUseStyles();
   const theme = useTheme();
@@ -49,7 +50,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
             open={mobileOpen}
             onClose={handleDrawerToggle}
             classes={{
-              paper: classes.drawerPaper,
+              paper: classes.drawerPaper
             }}
             ModalProps={{
               keepMounted: true
@@ -61,12 +62,12 @@ const Layout: FunctionComponent<LayoutProps> = ({
         <Hidden xsDown implementation="css">
           <Drawer
             classes={{
-              paper: classes.drawerPaper,
+              paper: classes.drawerPaper
             }}
             variant="permanent"
             open
           >
-            {drawer}
+            <List>{drawer}</List>
           </Drawer>
         </Hidden>
       </nav>
@@ -76,6 +77,6 @@ const Layout: FunctionComponent<LayoutProps> = ({
       </main>
     </div>
   );
-}
+};
 
 export default Layout;

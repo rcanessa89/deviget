@@ -1,4 +1,4 @@
 export interface LayoutProps {
-    title: string;
-    drawer?: JSX.Element[];
+  title: string;
+  drawer?: any;
 }
