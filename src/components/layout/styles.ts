@@ -37,7 +37,7 @@ export const layoutUseStyles = makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${DRAWER_WIDTH}px)`,
-      padding: theme.spacing(3),
+      padding: theme.spacing(3)
     }
   },
   dismissAllbuttonContainer: {

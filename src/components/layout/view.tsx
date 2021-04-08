@@ -27,21 +27,18 @@ const Layout: FunctionComponent<LayoutProps> = ({
   const theme = useTheme();
   const [page, setPage] = useState(1);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pageStart = (page * PAGE_SIZE) - PAGE_SIZE;
+  const pageStart = page * PAGE_SIZE - PAGE_SIZE;
   const pageEnd = pageStart + PAGE_SIZE;
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawerEl = (
     <TransitionGroup>
-      {
-        drawer.slice(pageStart, pageEnd).map(d => (
-          <CSSTransition key={d.props.id} timeout={500} classNames="item">
-            {d}
-          </CSSTransition>
-        ))
-      }
+      {drawer.slice(pageStart, pageEnd).map((d) => (
+        <CSSTransition key={d.props.id} timeout={500} classNames="item">
+          {d}
+        </CSSTransition>
+      ))}
     </TransitionGroup>
   );
 

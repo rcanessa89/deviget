@@ -30,11 +30,7 @@ const HomeView: FunctionComponent<RouteComponentProps<HomeRouteParams>> = (
   const onDissmissPost = (id: string) => () =>
     dispatch(postSlice.actions.dismissPost(id));
   const drawer = posts.map((p) => (
-    <PostCard
-      key={p.key}
-      {...p}
-      onDissmissPost={onDissmissPost(p.id)}
-    />
+    <PostCard key={p.key} {...p} onDissmissPost={onDissmissPost(p.id)} />
   ));
 
   useEffect(() => {

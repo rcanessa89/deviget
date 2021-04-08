@@ -1,44 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Deviget test
 
-## Available Scripts
+This project is a solution according to the specifications of [this](https://github.com/deviget/Front-end) repository, is a SPA (single page application) generated with [create-react-app](https://github.com/facebook/create-react-app) and wrote with Typescript, using technologies like redux and redux toolkit as state manager, Material UI for styles, Axios for HTTP calls and React Router.
 
-In the project directory, you can run:
+## Requeriments
 
-### `yarn start`
+```
+* NodeJS
+* Yarn as a package manager
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```
+* git clone https://github.com/rcanessa89/deviget.git
+* cd deviget
+* yarn install
+```
 
-### `yarn test`
+## Usage
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+* yarn start
+```
 
-### `yarn build`
+## Delivery
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Built with ReactJS ✅
+* Using Redux ✅
+* Showing the model data (title, author, entry date, thumbnail, number of commnets, and unread status) ✅
+* Full-size picture ✅
+* Pagination ✅
+* Indicator of unread/read post, the readed posts turn gray and is saved in local storage ✅
+* Dismiss Post Button ✅
+* Dismiss All Button ✅
+* Support split layout ✅
+* Responsive design ✅
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+##### NOTE: These requirements are out of the scope, is not a native mobile application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Saving pictures in the picture gallery ❌
+- App state-preservation/restoration ❌
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Decisions taken and important notes
+- Use Typescript to implement type checking in the build time
+- Use memorization technic to avoid unnecessary re-renders
+- Separation of the components by smart and dumb category (as much as possible)
+- Use Redux Toolkit to reduce the redux boilerplate code
+- Use function component to keep the code simple
