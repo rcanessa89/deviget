@@ -7,9 +7,7 @@ import { ROUTER_PATHS } from './constants';
 const AppRouter: FunctionComponent = () => (
   <Router>
     <Switch>
-      <Route path={ROUTER_PATHS.home}>
-        <HomeView></HomeView>
-      </Route>
+      <Route path={ROUTER_PATHS.home} component={HomeView} />
     </Switch>
   </Router>
 );

@@ -1,3 +1,3 @@
-import { RouteProps } from 'react-router';
-
-export interface HomeViewProps extends RouteProps {}
+export interface HomeRouteParams {
+  postId: string;
+}

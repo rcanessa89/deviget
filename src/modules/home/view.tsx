@@ -1,5 +1,5 @@
-import { FunctionComponent, useEffect } from 'react';
-import { RouteProps } from 'react-router-dom';
+import { FunctionComponent, useEffect, useCallback } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import {
   CSSTransition,
   TransitionGroup
@@ -10,14 +10,17 @@ import { fetchPosts } from 'store/slices/post';
 import { postSlice } from 'store/slices/post';
 import { Layout } from 'components/layout';
 import { PostCard } from 'components/post-card';
+import { MainPost } from 'components/main-post';
+import { HomeRouteParams } from './types';
 import './post-card-transition.css';
 
-const HomeView: FunctionComponent<RouteProps> = () => {
+const HomeView: FunctionComponent<RouteComponentProps<HomeRouteParams>> = (props) => {
   const dispatch = useAppDispatch();
-  const posts = useAppSelector((state) =>
+  const posts = useAppSelector(state =>
     Object.values(state.post.data.children)
   );
-  const onDismissAll = () => dispatch(postSlice.actions.dismissAll());
+  const currentPost = useAppSelector(state => state.post.data.children[props.match.params.postId]);
+  const onDismissAll = useCallback(() => dispatch(postSlice.actions.dismissAll()), [dispatch]);
   const onDissmissPost = (id: string) => () => dispatch(postSlice.actions.dismissPost(id));
   const drawer = (
     <TransitionGroup>
@@ -47,7 +50,9 @@ const HomeView: FunctionComponent<RouteProps> = () => {
       title="Reddit top 50"
       drawer={drawer}
       onDismissAll={onDismissAll}
-    />
+    >
+      <MainPost {...currentPost} />
+    </Layout>
   );
 };
 
