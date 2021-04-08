@@ -1,6 +1,8 @@
 import { FunctionComponent } from 'react';
 import { RouteProps } from 'react-router-dom';
 
-const HomeView: FunctionComponent<RouteProps> = () => <div>Home View</div>;
+import { Layout } from 'components/layout';
+
+const HomeView: FunctionComponent<RouteProps> = () => <Layout />;
 
 export default HomeView;
