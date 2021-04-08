@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { extraReducersAddDefault } from 'utils/extra-reducers-add-default';
 
 import { httpRequest } from 'utils/http-request';
@@ -45,7 +45,11 @@ export const fetchPosts = createAsyncThunk<any, void, AppAsyncThunkOptions>(
 export const postSlice = createSlice({
   name: POST_SLICE_NAME,
   initialState,
-  reducers: {},
+  reducers: {
+    removePost: (state, action: PayloadAction<string>) => {
+      delete state.data.children[action.payload];
+    }
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.status = action.meta.requestStatus;

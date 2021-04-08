@@ -1,4 +1,5 @@
 export interface PostCardProps {
+  id: string;
   title: string;
   thumbnail: string;
   author: string;
