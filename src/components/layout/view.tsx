@@ -59,9 +59,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
               keepMounted: true
             }}
           >
-            <List>
-              {drawer}
-            </List>
+            <List>{drawer}</List>
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
@@ -72,9 +70,7 @@ const Layout: FunctionComponent<LayoutProps> = ({
             variant="permanent"
             open
           >
-            <List>
-              {drawer}
-            </List>
+            <List>{drawer}</List>
           </Drawer>
         </Hidden>
         <div className={classes.dismissAllbuttonContainer}>

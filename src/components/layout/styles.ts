@@ -32,7 +32,7 @@ export const layoutUseStyles = makeStyles((theme) => ({
     paddingBottom: DISMISS_ALL_BUTTON_HEIGHT
   },
   content: {
-    flexGrow: 1,
+    width: `calc(100% - ${DRAWER_WIDTH}px)`,
     padding: theme.spacing(3)
   },
   dismissAllbuttonContainer: {

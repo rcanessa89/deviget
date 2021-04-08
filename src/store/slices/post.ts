@@ -25,7 +25,7 @@ export const fetchPosts = createAsyncThunk<any, void, AppAsyncThunkOptions>(
   `${POST_SLICE_NAME}/fetchTop`,
   async (payload, thunkApi) => {
     const url = '/r/all/top.json';
-    const limit = 10;
+    const limit = 50;
     const after = thunkApi.getState().post.data?.after;
     const res = await httpRequest({
       url,

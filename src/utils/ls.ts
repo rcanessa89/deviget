@@ -1,10 +1,15 @@
 import { useState } from 'react';
 
-export type LSKeyValue = string | string[] | number | number[] | (string|number)[];
+export type LSKeyValue =
+  | string
+  | string[]
+  | number
+  | number[]
+  | (string | number)[];
 
 export type LSValue = {
-  [key:string]: LSKeyValue;
-}
+  [key: string]: LSKeyValue;
+};
 
 export class LS {
   public key: string;
@@ -23,9 +28,9 @@ export class LS {
     const currentValue = JSON.parse(localStorage.getItem(this.key) || 'null');
 
     if (currentValue && currentValue[key]) {
-      return currentValue[key]
+      return currentValue[key];
     } else if (currentValue && !currentValue[key]) {
-      return null
+      return null;
     }
 
     this.setKey();
@@ -69,7 +74,10 @@ export class LS {
   }
 }
 
-export const useLS = (ls: LS, key: string): [LSKeyValue | LSValue | null, (v: LSKeyValue | LSValue) => void] => {
+export const useLS = (
+  ls: LS,
+  key: string
+): [LSKeyValue | LSValue | null, (v: LSKeyValue | LSValue) => void] => {
   const [value, setValue] = useState(ls.getValue(key));
 
   const setNewValue = (v: LSKeyValue | LSValue) => {
